@@ -43,9 +43,9 @@ $(GNAME AnonymousEnumMember):
 	They come in these forms:
 	)
 	$(OL
-	$(LI Named enums, which have a name.)
-	$(LI Anonymous enums, which do not have a name.)
-	$(LI Manifest constants.)
+	$(LI $(ALOCAL named_enums, Named enums), which have a name.)
+	$(LI $(ALOCAL anonymous_enums, Anonymous enums), which do not have a name.)
+	$(LI $(ALOCAL manifest_constants, Manifest constants).)
 	)
 
 $(H2 $(LNAME2 named_enums, Named Enums))
@@ -241,7 +241,7 @@ enum
 
 $(H2 $(LNAME2 manifest_constants, Manifest Constants))
 
-	$(P If there is only one member of an anonymous enum, the { } can
+	$(P If there is only one member of an anonymous enum, the `{ }` can
 	be omitted. Gramatically speaking, this is an $(GLINK2 declaration, AutoDeclaration).
 	)
 

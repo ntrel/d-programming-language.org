@@ -42,11 +42,8 @@ $(SPEC_S Structs and Unions,
         $(CHECK), $(UNCHECK), $(UNCHECK), $(CHECK), $(CHECK))
         $(TROW $(RELATIVE_LINK2 struct-destructor, destructors), $(CHECK),
         $(CHECK), $(UNCHECK), $(CHECK), $(CHECK))
-        $(TROW $(GLINK2 class, SharedStaticConstructor)s, $(CHECK),
-        $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
-        $(TROW $(GLINK2 class, SharedStaticDestructor)s,  $(CHECK),
-        $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
-        $(TROW RAII, $(CHECK), $(CHECK), $(UNCHECK), $(CHECK), $(CHECK))
+        $(TROW $(HTTPS dlang.org/glossary.html#raii, RAII),
+        $(CHECK), $(CHECK), $(UNCHECK), $(CHECK), $(CHECK))
         $(TROW $(RELATIVE_LINK2 assign-overload, identity assign overload), $(CHECK),
         $(UNCHECK), $(UNCHECK), $(CHECK), $(CHECK))
         $(TROW $(RELATIVE_LINK2 struct-literal, literals), $(CHECK), $(UNCHECK),
@@ -55,8 +52,8 @@ $(SPEC_S Structs and Unions,
         $(CHECK), $(CHECK))
         $(TROW inheritance, $(UNCHECK), $(CHECK), $(UNCHECK),
         $(CHECK), $(CHECK))
-        $(TROW invariants, $(CHECK), $(CHECK), $(UNCHECK), $(UNCHECK),
-        $(UNCHECK))
+        $(TROW $(HTTP dlang.org/spec/contracts.html#Invariants, invariants),
+        $(CHECK), $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
         $(TROW unit tests, $(CHECK), $(CHECK), $(UNCHECK), $(UNCHECK),
         $(UNCHECK))
         $(TROW synchronizable, $(UNCHECK), $(CHECK), $(UNCHECK), $(UNCHECK),
@@ -70,12 +67,16 @@ $(SPEC_S Structs and Unions,
         $(TROW tag name space, $(UNCHECK), $(UNCHECK), $(CHECK),
         $(CHECK), $(CHECK))
         $(TROW anonymous, $(CHECK), $(UNCHECK), $(CHECK), $(CHECK), $(CHECK))
-        $(TROW static constructor, $(CHECK), $(CHECK), $(UNCHECK),
-        $(UNCHECK), $(UNCHECK))
-        $(TROW static destructor, $(CHECK), $(CHECK), $(UNCHECK),
-        $(UNCHECK), $(UNCHECK))
-        $(TROW const/immutable/shared, $(CHECK), $(CHECK), $(UNCHECK),
-        $(UNCHECK), $(UNCHECK))
+        $(TROW $(HTTP dlang.org/spec/class.html#static-constructor, static constructor),
+        $(CHECK), $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
+        $(TROW $(HTTP dlang.org/spec/class.html#static-destructor, static destructor),
+        $(CHECK), $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
+        $(TROW $(GLINK2 class, SharedStaticConstructor)s, $(CHECK),
+        $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
+        $(TROW $(GLINK2 class, SharedStaticDestructor)s,  $(CHECK),
+        $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
+        $(TROW $(HTTP dlang.org/spec/const3.html, const/immutable/shared),
+        $(CHECK), $(CHECK), $(UNCHECK), $(UNCHECK), $(UNCHECK))
         $(TROW inner nesting, $(RELATIVE_LINK2 nested, $(CHECK)),
         $(DDSUBLINK spec/class, nested, $(CHECK)), $(UNCHECK), $(UNCHECK), $(UNCHECK))
         )

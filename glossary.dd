@@ -199,12 +199,13 @@ void test()
 
 	$(DT $(LNAME2 raii, $(ACRONYM RAII, Resource Acquisition Is Initialization)))
 	$(DD RAII refers to the technique of having the destructor
-	of a class object called when the object goes out of scope.
+	of an object called when the object goes out of scope.
 	The destructor then releases any resources acquired by
 	that object.
 	RAII is commonly used for resources that are in short supply
 	or that must have a predictable point when they are released.
-	RAII objects in D are created using the $(D scope) storage class.
+	RAII objects in D are created using `struct` or
+	$(HTTP dlang.org/spec/class.html#auto, `scope` class) instances.
 	)
 
 	$(DT $(LNAME2 rvalue, rvalue))
