@@ -168,7 +168,7 @@ void test(Foo foo)
 $(H2 $(LNAME2 class_properties, Class Properties))
 
         $(P The $(D .tupleof) property is an
-        $(DDSUBLINK spec/template, variadic-templates, expression sequence)
+        $(DDSUBLINK spec/ctarguments, homogenous-lists, lvalue sequence)
         of all the fields in the class, excluding the hidden fields and
         the fields in the base class.
         )
