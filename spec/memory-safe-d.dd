@@ -24,13 +24,41 @@ $(HEADERNAV_TOC)
 
 $(H2 $(LNAME2 usage, Usage))
 
-        $(P Memory safety can be enabled on a per-function basis using
-        the $(DDSUBLINK spec/function, safe-functions, $(D @safe) attribute).
-        This can be inferred when the compiler has the function body
-        available. The $(DDSUBLINK spec/function, trusted-functions, `@trusted` attribute) can be used when a function has a safe
-        interface, but uses unsafe code internally. These functions can
-        be called from $(D @safe) code.
+        $(P There are three categories of functions from the perspective of Memory safety:)
+        $(UL
+                $(LI $(DDSUBLINK spec/function, safe-functions, $(D @safe)) functions)
+                $(LI $(DDSUBLINK spec/function, trusted-functions, $(D `@trusted`) functions), and )
+                $(IL $(DDSUBLINK spec/function, system-functions, $(D `@system`) functions)
         )
+
+        $(P $(D `@system`) functions may perform any operation legal from the perspective of the language including inherently
+        memory unsafe operations like returning pointers to expired stackframes. These functions may not be called directly from 
+        $(D `@safe`) functions.)
+
+        $(P $(D `@trusted`) functions have all the capabilities of $(D `@system`) functions but may be called from 
+        $(D @safe) functions. For this reason they should be very limited in the scope of their use. Typical uses of 
+        $(D `@trusted`) functions include wrapping system calls that take buffer pointer and length arguments separately so that
+        $(D @safe) functions may call them with arrays.)
+
+        $(P $(D @safe) functions have a number of restrictions on what they may do and are intended to disallow operations that 
+        may cause memory corruption. See $(DDSUBLINK spec/function, safe-functions, $(D @safe) functions).)
+
+        $(P These attributes may be inferred when the compiler has the function body available, such as with templates.)
+
+        $(P The function parameter attributes $(D return) and $(D scope) are used to track what happens to pointers (inclusive of 
+        $(D this), arrays, delegates/lazy, references, classes and aggregates containing the above) passed to functions.)
+
+        $(P $(D scope) ensures that no references to the pointed-to object are retained, in global variables or pointers passed to the 
+        function (and recursively to other functions called in the function), as a result of calling the function. 
+        Variables in the function body and paramter list that are $(D scope) may have their allocations elided as a result.)
+
+        $(P $(D return) indicates that the return value of the function (or $(D this) for constructor 
+        or the first parameter for functions that retrun void) is a pointer derived from this parameter or any other paramters also marked 
+        $(D return).)
+
+        $(P These attributes may appear after the formal parameter list in which case they apply to the $(D this) parameter, or if the 
+        function is a free function that takes its first parameter by $(D ref) it applies to the first parameter. 
+        $(D return) or $(D scope) applied to a type that is not a pointer or does not contain pointers is ignored.)
 
         $(P Array bounds checks are necessary to enforce memory safety, so
         these are enabled (by default) for $(D @safe) code even in $(B
