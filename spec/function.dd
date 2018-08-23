@@ -1188,6 +1188,8 @@ int foo(in int x, out int y, ref int z, int q);
     $(TROW $(D scope), references in the parameter
     cannot be escaped (e.g. assigned to a global variable).
     Ignored for parameters with no references)
+    $(TROW $(D return), the functions'returned value is derived from this or other $(D return) parameters and
+    is required to not outlive the reference it was derived from. Ignored for parameters with no references)
     $(TROW $(D lazy), argument is evaluated by the called function and not by the caller)
         $(TROW $(D const), argument is implicitly converted to a const type)
     $(TROW $(D immutable), argument is implicitly converted to an immutable type)
@@ -1292,6 +1294,7 @@ $(H3 $(LNAME2 return-ref-parameters, Return Ref Parameters))
         $(P Return ref parameters are used with
         $(RELATIVE_LINK2 ref-functions, ref functions) to ensure that the
         returned reference will not outlive the matching argument's lifetime.
+        When `return` is applied to a parameter that is not `ref` it is ignored.
         )
 
 ---
