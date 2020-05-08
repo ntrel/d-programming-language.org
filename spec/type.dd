@@ -305,7 +305,7 @@ $(P The C style syntax for declaring pointers to functions is deprecated:)
 int (*fp)(int);  // fp is pointer to a function
 -------------------
 
-$(H2 $(LNAME2 mixin_types, $(D Mixin Types)))
+$(H2 $(LNAME2 mixin_types, Mixin Types))
 
 $(GRAMMAR
 $(GNAME MixinType):
@@ -313,9 +313,9 @@ $(GNAME MixinType):
 )
 
     $(P Each $(GLINK AssignExpression) in the $(I ArgumentList) is
-        evaluated at compile time, and the result must be representable
+        evaluated at compile time, and each result must be representable
         as a string.
-        The resulting strings are concatenated to form a string.
+        The resulting strings are concatenated to form a single string.
         The text contents of the string must be compilable as a valid
         $(GLINK2 declaration, Type), and is compiled as such.)
 
