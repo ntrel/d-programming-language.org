@@ -990,7 +990,8 @@ $(GNAME UnionTemplateDeclaration):
 )
 
     $(P If a template declares exactly one member, and that member is a class
-        with the same name as the template:)
+        with the same name as the template (see
+        $(RELATIVE_LINK2 implicit_template_properties, Eponymous Templates):)
 
         ------
         template $(CODE_HIGHLIGHT Bar)(T)
@@ -1312,7 +1313,7 @@ $(H2 $(LNAME2 nested-templates, Nested Templates))
 
     $(P Above, $(D Foo!().foo) will work just the same as a member function
         of class $(D C), and $(D Bar!().bar) will work just the same as a nested
-        function within function $(D main$(LPAREN)$(RPAREN)).)
+        function within function $(D main()).)
 
 $(H3 $(LNAME2 implicit-nesting, Implicit Nesting))
 
@@ -1411,13 +1412,11 @@ $(H3 $(LNAME2 implicit-nesting, Implicit Nesting))
             int fun(int i) { return F(i); }
         }
 
-        A!F makeA(alias F)() { return A!F(); }
-
         void main()
         {
             int x = 40;
-            int fun(int i) { return x + i; }
-            A!fun a = makeA!fun();
+            int addX(int i) { return x + i; }
+            A!addX a;
             assert(a.fun(2) == 42);
         }
         ---
@@ -1425,8 +1424,8 @@ $(H3 $(LNAME2 implicit-nesting, Implicit Nesting))
     $(H3 $(LNAME2 nested_template_limitation, Context Limitation))
 
     $(P Currently nested templates can capture at most one context. As a typical
-        example, non-static template member functions cannot take local symbol
-        by using template alias parameter.)
+        example, non-static template member functions cannot accept a local symbol
+        as a template alias parameter.)
 
         ----
         class C
@@ -1443,7 +1442,7 @@ $(H3 $(LNAME2 implicit-nesting, Implicit Nesting))
         }
         ----
 
-    $(P But, if one context is indirectly accessible from other context, it is allowed.)
+    $(P But, if one context is indirectly accessible from the other context, it is allowed.)
 
         ----
         int sum(alias x, alias y)() { return x + y; }
@@ -1460,10 +1459,9 @@ $(H3 $(LNAME2 implicit-nesting, Implicit Nesting))
         }
         ----
 
-        $(P Two local variables $(D a) and $(D b) are in different contexts, but
-        outer context is indirectly accessible from innter context, so nested
-        template instance $(D sum!$(LPAREN)a, b$(RPAREN)) will capture only
-        inner context.)
+        $(P The two local variables $(D a) and $(D b) are in different contexts, but
+        the outer context is indirectly accessible from the inner context, so nested
+        template instance `sum!(a, b)` will capture only the inner context.)
 
 $(H2 $(LNAME2 recursive_templates, Recursive Templates))
 
@@ -1487,6 +1485,8 @@ $(H2 $(LNAME2 recursive_templates, Recursive Templates))
             writefln("%s", factorial!(4)); // prints 24
         }
         ------
+    $(P Note: Typically, $(DDSUBLINK spec/version, staticif, `static if`)
+        would be used to combine template overloads into one.)
 
 $(H2 $(LNAME2 template_constraints, Template Constraints))
 
@@ -1519,7 +1519,7 @@ $(GNAME Constraint):
         ---
 
     $(P Template constraints can be used with aggregate types (structs, classes, unions).
-        Constraints are effectively used with library module "std.traits":)
+        Constraints are effectively used with library module $(MREF std, traits):)
 
         ---
         import std.traits;

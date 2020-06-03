@@ -1458,6 +1458,8 @@ int bar()
         instance of $(D Outer).
         )
 
+$(H3 $(LNAME2 outer-property, `outer` Property))
+
         $(P The property $(D .outer) used in a nested class gives the
         $(D this) pointer to its enclosing class. If there is no enclosing
         class context, $(D .outer) would return a pointer to enclosing
@@ -1484,7 +1486,7 @@ class Outer
     void bar()
     {
         // x is referenced from nested scope, so
-        // bar makes a closure envronment.
+        // bar makes a closure environment.
         int x = 1;
 
         class Inner2
@@ -1525,7 +1527,7 @@ class Outer
 }
 ----
 
-$(H2 $(LNAME2 anonymous, Anonymous Nested Classes))
+$(H3 $(LNAME2 anonymous, Anonymous Nested Classes))
 
         $(P An anonymous nested class is both defined and instantiated with
         a $(I NewAnonClassExpression):
